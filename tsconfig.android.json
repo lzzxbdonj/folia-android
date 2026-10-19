@@ -1,0 +1,5 @@
+{
+    "extends": "./tsconfig.json",
+    "include": ["src", "capacitor.config.ts"],
+    "exclude": ["node_modules", "dist", "android", "androidBackend", "test", "release", "sync-server", "original"]
+}

@@ -1,0 +1,7 @@
+{
+    "node": "18.20.4",
+    "failures": [],
+    "routes": 47,
+    "polyfills": [],
+    "jsdom": true
+}

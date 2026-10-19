@@ -1,0 +1,91 @@
+/* Android short-landscape guards. Preserve the original desktop-style stage,
+   compact capsule and transient track card shown in the user's reference video.
+   Only overlays that cannot fit on a phone are constrained here. */
+html {
+    --folia-inset-top: 0px;
+    --folia-inset-right: 0px;
+    --folia-inset-bottom: 0px;
+    --folia-inset-left: 0px;
+}
+
+/* Do not shrink or pad the lyric canvas: its renderer owns line placement. */
+html[data-folia-orientation="landscape"] .folia-player-cap-anchor {
+    bottom: max(24px, calc(var(--folia-inset-bottom) + 8px)) !important;
+    max-width: calc(100vw - var(--folia-inset-left) - var(--folia-inset-right) - 96px);
+}
+
+/* Match the reference's small central capsule even when desktop tuning adds width. */
+html[data-folia-orientation="landscape"] .folia-player-cap[data-expanded="false"] {
+    width: min(288px, 100%) !important;
+}
+
+/* Keep the transient card beside, rather than behind, the central capsule. */
+html[data-folia-orientation="landscape"] .folia-now-playing-toast {
+    left: calc(var(--folia-inset-left) + 12px);
+    max-width: min(240px, calc(50vw - var(--folia-inset-left) - 164px));
+    bottom: max(24px, calc(var(--folia-inset-bottom) + 8px)) !important;
+}
+
+html[data-folia-orientation="landscape"] .folia-now-playing-toast [data-toast-card] {
+    min-width: 0;
+    width: 100%;
+}
+
+/* Wall tools: the stack already sits above its handle, which is what a phone
+   shows too. Only lower its ceiling so a short viewport cannot push the panel
+   off the top; the panel itself scrolls instead of being clipped. */
+html[data-folia-orientation="landscape"] .lattice-tools-stack {
+    max-height: calc(100dvh - var(--folia-inset-top) - var(--folia-inset-bottom) - 96px);
+}
+
+html[data-folia-orientation="landscape"] .lattice-tools.has-above .lattice-tools-stack {
+    max-height: calc(100dvh - var(--folia-inset-top) - var(--folia-inset-bottom) - 148px);
+}
+
+html[data-folia-orientation="landscape"] .lattice-tools-panel {
+    max-height: 100%;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+html[data-folia-orientation="landscape"] .lattice-tools-panel > * {
+    flex-shrink: 0;
+}
+
+/* Settings is a 960x86vh desktop window; on a 360px-tall viewport that is
+   taller and wider than the screen. Run it edge to edge instead of cropping it. */
+html[data-folia-orientation="landscape"] .folia-settings-overlay {
+    padding: 0 !important;
+}
+
+html[data-folia-orientation="landscape"] .folia-settings-sheet {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 100dvh !important;
+    border-radius: 0 !important;
+}
+
+/* The song panel still unfolds above its handle, but never above the safe area. */
+html[data-folia-orientation="landscape"] .folia-player-panel-anchor [data-testid="unified-panel-surface"] {
+    max-height: calc(100dvh - var(--folia-inset-top) - var(--folia-inset-bottom) - 104px) !important;
+}
+
+html[data-folia-orientation="landscape"] .folia-ponder-fab {
+    top: calc(var(--folia-inset-top) + 10px) !important;
+    right: calc(var(--folia-inset-right) + 14px) !important;
+    height: 38px !important;
+    width: 38px !important;
+}
+
+/* The seam column sits on top of a dense poster wall on a phone, where the
+   desktop "clear seam" scrim (64%) is too thin: the vertical title and the
+   transport icons blend into the covers behind them. Raise the density of the
+   same scrim; the layout, icons and font stay untouched. */
+html[data-folia-platform="android"] .lattice-root.bravais-root.has-clear-seam {
+    --bravais-seam-paper: color-mix(in srgb, var(--bg-color, #070707) 90%, transparent);
+}
+
+html[data-folia-platform="android"] .lattice-root.bravais-root.has-clear-seam.has-backdrop-blur {
+    --bravais-seam-paper: color-mix(in srgb, var(--bg-color, #070707) 82%, transparent);
+}

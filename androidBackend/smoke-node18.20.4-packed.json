@@ -1,0 +1,50 @@
+{
+    "node": "18.20.4",
+    "packed": true,
+    "tests": [
+        {
+            "name": "health-requires-token",
+            "passed": true
+        },
+        {
+            "name": "health-before-ready",
+            "passed": true
+        },
+        {
+            "name": "initialization",
+            "passed": true
+        },
+        {
+            "name": "generic-proxy-disabled",
+            "passed": true
+        },
+        {
+            "name": "anonymous-registration",
+            "http": 200,
+            "code": 200,
+            "cookiePresent": true,
+            "passed": true
+        },
+        {
+            "name": "search",
+            "http": 200,
+            "code": 200,
+            "songs": 1,
+            "passed": true
+        },
+        {
+            "name": "qr-image-local",
+            "http": 200,
+            "imagePresent": true,
+            "passed": true
+        }
+    ],
+    "health": {
+        "status": "running",
+        "node": "18.20.4",
+        "apiVersion": "4.41.1",
+        "error": null,
+        "host": "127.0.0.1",
+        "port": 39843
+    }
+}

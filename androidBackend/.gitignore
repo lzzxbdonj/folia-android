@@ -1,0 +1,6 @@
+# Rebuildable native runtime assets and isolated validation state.
+assets/
+.tools/
+.smoke-runtime/
+.compat-runtime/
+.runtime/
